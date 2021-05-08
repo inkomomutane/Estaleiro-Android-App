@@ -3,19 +3,22 @@ import 'Project.dart';
 import 'Role.dart';
 
 import 'package:json_annotation/json_annotation.dart';
-part 'Cashier.g.dart';
+part 'User.g.dart';
 
 @JsonSerializable()
 class User {
-  int id;
-  String name;
-  String email;
-  Role role;
-  List<Cashier> cashiers;
-  List<Project> projects;//
-  DateTime createdAt;
-  DateTime emailVerifiedAt;
-  DateTime updatedAt;
+  int? id;
+  String? name;
+  String? email;
+  Role? role;
+  List<Cashier>? cashiers;
+  List<Project>? projects;
+  @JsonKey(name: 'created_at')
+  DateTime? createdAt;
+  @JsonKey(name: 'email_verified_at')
+  DateTime? emailVerifiedAt;
+  @JsonKey(name: 'updated_at')
+  DateTime? updatedAt;
   User(
       {this.id,
         this.name,
@@ -26,8 +29,8 @@ class User {
         this.createdAt,
         this.emailVerifiedAt,
         this.updatedAt});
-  factory Cashier.fromJson(Map<String, dynamic> json) =>
-      _$CashierFromJson(json);
-  Map<String, dynamic> toJson() => _$CashierToJson(this);
+  factory User.fromJson(Map<String, dynamic> json) =>
+      _$UserFromJson(json);
+  Map<String, dynamic> toJson() => _$UserToJson(this);
 }
 

@@ -4,23 +4,32 @@ import 'Status.dart';
 import 'User.dart';
 
 import 'package:json_annotation/json_annotation.dart';
-part 'Cashier.g.dart';
+part 'Invoice.g.dart';
 
 @JsonSerializable()
 class Invoice {
-  int id;
-  String depreciatedAt;
-  User cliente;
-  double totalPrice;
-  int totalMaterials;
-  int processedBy;
-  String clientName;
-  String orderCode;
-  Status status;
-  Payment payment;
-  List<CashInflowOutflow> cashInflowOutflows;
-  DateTime createdAt;
-  DateTime updatedAt;
+  int? id;
+  @JsonKey(name: 'depreciated_at')
+  String? depreciatedAt;
+  User? cliente;
+  @JsonKey(name: 'total_price')
+  double? totalPrice;
+  @JsonKey(name: 'total_materials')
+  int? totalMaterials;
+  @JsonKey(name: 'processed_by')
+  int? processedBy;
+  @JsonKey(name: 'client_name')
+  String? clientName;
+  @JsonKey(name: 'order_code')
+  String? orderCode;
+  Status? status;
+  Payment? payment;
+  @JsonKey(name: 'cash_inflow_outflows')
+  List<CashInflowOutflow>? cashInflowOutflows;
+  @JsonKey(name: 'created_at')
+  DateTime? createdAt;
+  @JsonKey(name: 'updated_at')
+  DateTime? updatedAt;
 
   Invoice(
       {this.id,
@@ -37,7 +46,7 @@ class Invoice {
         this.createdAt,
         this.updatedAt
       });
-  factory Cashier.fromJson(Map<String, dynamic> json) =>
-      _$CashierFromJson(json);
-  Map<String, dynamic> toJson() => _$CashierToJson(this);
+  factory Invoice.fromJson(Map<String, dynamic> json) =>
+      _$InvoiceFromJson(json);
+  Map<String, dynamic> toJson() => _$InvoiceToJson(this);
 }

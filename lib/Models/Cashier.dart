@@ -3,17 +3,24 @@ import 'package:json_annotation/json_annotation.dart';
 part 'Cashier.g.dart';
 @JsonSerializable()
 class Cashier {
-  int id;
-  DateTime openedAt;
-  DateTime closedAt;
-  double initialBalance;
-  double finalBalance;
-  bool cashierStatus;
-  User employee;
-  bool status;
-  String observation;
-  DateTime createdAt;
-  DateTime updatedAt;
+  int?  id;
+  @JsonKey(name: 'opened_at')
+  DateTime? openedAt;
+  @JsonKey(name: 'closed_at')
+  DateTime? closedAt;
+  @JsonKey(name: 'initial_balance')
+  double? initialBalance;
+  @JsonKey(name: 'final_balance')
+  double? finalBalance;
+  @JsonKey(name: 'cashier_status')
+  bool? cashierStatus;
+  User? employee;
+  bool? status;
+  String? observation;
+  @JsonKey(name: 'created_at')
+  DateTime? createdAt;
+  @JsonKey(name: 'updated_at')
+  DateTime? updatedAt;
 
   Cashier(
       {this.id,

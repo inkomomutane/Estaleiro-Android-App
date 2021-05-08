@@ -1,16 +1,18 @@
 import 'package:estaleiro/Models/User.dart';
 
 import 'package:json_annotation/json_annotation.dart';
-part 'Cashier.g.dart';
+part 'Role.g.dart';
 
 @JsonSerializable()
 class Role {
-  int id;
-  String name;
-  String description;
-  List<User> users;
-  DateTime createdAt;
-  DateTime updatedAt;
+  int? id;
+  String? name;
+  String? description;
+  List<User>? users;
+  @JsonKey(name: 'created_at')
+  DateTime? createdAt;
+  @JsonKey(name: 'updated_at')
+  DateTime? updatedAt;
 
   Role(
       {this.id,
@@ -20,7 +22,7 @@ class Role {
         this.createdAt,
         this.updatedAt
       });
-  factory Cashier.fromJson(Map<String, dynamic> json) =>
-      _$CashierFromJson(json);
-  Map<String, dynamic> toJson() => _$CashierToJson(this);
+  factory Role.fromJson(Map<String, dynamic> json) =>
+      _$RoleFromJson(json);
+  Map<String, dynamic> toJson() => _$RoleToJson(this);
 }

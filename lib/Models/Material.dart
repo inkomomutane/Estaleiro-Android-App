@@ -2,23 +2,31 @@ import 'Category.dart';
 import 'Measure.dart';
 
 import 'package:json_annotation/json_annotation.dart';
-part 'Cashier.g.dart';
+part 'Material.g.dart';
 
 @JsonSerializable()
 class Material {
-  String name;
-  double quantity;
-  double buyPrice;
-  String description;
-  String shortDescription;
-  bool internMaterial;
-  String createdBy;
-  String updatedBy;
-  Measure measure;
-  Category category;
-  List<Measure> measures;
-  DateTime createdAt;
-  DateTime updatedAt;
+  int ? id;
+  String? name;
+  double? quantity;
+  @JsonKey(name: 'buy_price')
+  double? buyPrice;
+  String? description;
+  @JsonKey(name: 'short_description')
+  String? shortDescription;
+  @JsonKey(name: 'intern_material')
+  bool? internMaterial;
+  @JsonKey(name: 'created_by')
+  String? createdBy;
+  @JsonKey(name: 'updated_by')
+  String? updatedBy;
+  Measure? measure;
+  Category? category;
+  List<Measure>? measures;
+  @JsonKey(name: 'created_at')
+  DateTime? createdAt;
+  @JsonKey(name: 'updated_at')
+  DateTime? updatedAt;
 
   Material(
       {this.name,
@@ -34,9 +42,9 @@ class Material {
         this.measures,
         this.createdAt,
         this.updatedAt});
-  factory Cashier.fromJson(Map<String, dynamic> json) =>
-      _$CashierFromJson(json);
-  Map<String, dynamic> toJson() => _$CashierToJson(this);
+  factory Material.fromJson(Map<String, dynamic> json) =>
+      _$MaterialFromJson(json);
+  Map<String, dynamic> toJson() => _$MaterialToJson(this);
 
 }
 

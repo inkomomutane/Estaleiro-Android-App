@@ -2,17 +2,18 @@ import 'package:estaleiro/Models/Project.dart';
 import 'Invoice.dart';
 
 import 'package:json_annotation/json_annotation.dart';
-part 'Cashier.g.dart';
+part 'Status.g.dart';
 
 @JsonSerializable()
 class Status {
-  int id;
-  String name;
-  List<Project> projects;
-  List<Invoice> invoices;
-  DateTime createdAt;
-  DateTime updatedAt;
-
+  int? id;
+  String? name;
+  List<Project>? projects;
+  List<Invoice>? invoices;
+  @JsonKey(name: 'created_at')
+  DateTime? createdAt;
+  @JsonKey(name: 'updated_at')
+  DateTime? updatedAt;
   Status({this.id,
     this.name,
     this.projects,
@@ -20,7 +21,7 @@ class Status {
     this.createdAt,
     this.updatedAt
   });
-  factory Cashier.fromJson(Map<String, dynamic> json) =>
-      _$CashierFromJson(json);
-  Map<String, dynamic> toJson() => _$CashierToJson(this);
+  factory Status.fromJson(Map<String, dynamic> json) =>
+      _$StatusFromJson(json);
+  Map<String, dynamic> toJson() => _$StatusToJson(this);
 }
