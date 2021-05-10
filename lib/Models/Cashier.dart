@@ -38,4 +38,3 @@ class Cashier {
 factory Cashier.fromJson(Map<String, dynamic> json) => _$CashierFromJson(json);
   Map<String, dynamic> toJson() => _$CashierToJson(this);
 }
-
