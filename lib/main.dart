@@ -3,6 +3,7 @@ import 'package:estaleiro/Routes/Routes.dart';
 import 'package:flutter/material.dart';
 
 import 'Constants.dart';
+import 'UIs/Dashboard/Dashboard.dart';
 import 'UIs/Login/LoginScreen.dart';
 import 'UIs/Welcome/Welcome.dart';
 
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
       routes: {
         AppRoutes.HOME: (_) => Welcome(),
         AppRoutes.USER_LOGIN: (_) => Login(),
+        AppRoutes.DASHBOARD: (_) => Dashboard(),
       },
     );
   }

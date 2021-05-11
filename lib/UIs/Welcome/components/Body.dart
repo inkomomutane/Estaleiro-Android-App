@@ -27,9 +27,11 @@ class Body extends StatelessWidget {
             height: size.height * 0.4,
           ),
           SizedBox(height: size.height * 0.03),
-          RaisedButton(size, "LOGIN", Color(0xFFFCE0a2), Colors.black),
+          RaisedButton(size, "LOGIN", Color(0xFFFCE0a2), Colors.black,
+          AppRoutes.USER_LOGIN),
           SizedBox(height: size.height * 0.03),
-          RaisedButton(size, "REGISTAR", Color(0xFFE2F2F3), Colors.black)
+          RaisedButton(size, "REGISTAR", Color(0xFFE2F2F3), Colors.black,
+              AppRoutes.USER_LOGIN)
         ],
       ),
     );
@@ -41,7 +43,8 @@ class RaisedButton extends StatelessWidget {
   final String text;
   final Color color;
   final Color textColor;
-  RaisedButton(this.size, this.text, this.color, this.textColor);
+  final String route;
+  RaisedButton(this.size, this.text, this.color, this.textColor, this.route);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -64,7 +67,8 @@ class RaisedButton extends StatelessWidget {
               }),
               elevation: MaterialStateProperty.resolveWith((states) => 0)),
           onPressed: () {
-            Navigator.of(context).pushNamed(AppRoutes.USER_LOGIN);
+            Navigator.of(context).pop();
+            Navigator.of(context).pushNamed(this.route);
           },
           child: Text(
             text,

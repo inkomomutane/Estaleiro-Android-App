@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'dart:convert';
-// ignore: unused_import
 import 'package:http/http.dart' as http;
 import 'ClientApi.dart';
 
@@ -24,6 +23,7 @@ class AuthClientApi extends ClientApi {
           return null;
       }
     } catch (e) {
+      print(e);
       return null;
     }
   }
@@ -53,6 +53,7 @@ class AuthClientApi extends ClientApi {
           return null;
       }
     } catch (e) {
+      print(e);
       return null;
     }
   }

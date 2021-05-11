@@ -1,6 +1,7 @@
 import 'package:estaleiro/Api/AuthClientApi.dart';
 import 'package:estaleiro/Auth/Auth.dart';
 import 'package:estaleiro/Constants.dart';
+import 'package:estaleiro/Routes/Routes.dart';
 import 'package:estaleiro/UIs/GlobalWidgets/RaisedMailInput.dart';
 import 'package:estaleiro/UIs/GlobalWidgets/RaisedPasswordField.dart';
 import 'package:estaleiro/UIs/GlobalWidgets/RaisedTextInput.dart';
@@ -73,17 +74,20 @@ class _BodyState extends State<Body> {
                   print(map);
                   AuthClientApi auth = AuthClientApi();
                   var sol = await auth.login(map['email']!, map['password']!);
-                  print("");
+
                   if (sol != null) {
                     Auth aux = Auth.fromJson(sol);
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content:
-                          Text('Usuario ${aux.user!.name} logado com sucesso'),
+                    print(aux.user!.toJson());
+                    ScaffoldMessenger.of(context).showSnackBar(ResponseSnackbar(
+                      text: 'Usuario ${aux.user!.name} logado com sucesso!',
                       backgroundColor: Colors.green,
                     ));
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pushNamed(AppRoutes.DASHBOARD);
                   } else {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text('Usuario nao encontrado!'),
+                    print('error');
+                    ScaffoldMessenger.of(context).showSnackBar(ResponseSnackbar(
+                      text: 'Usuario nao encontrado!',
                       backgroundColor: Colors.red,
                     ));
                   }
@@ -93,4 +97,19 @@ class _BodyState extends State<Body> {
           ),
         ));
   }
+}
+
+// ignore: non_constant_identifier_names
+SnackBar ResponseSnackbar(
+    {required String text, required Color backgroundColor}) {
+  return SnackBar(
+    content: Text(
+      text,
+      style: TextStyle(
+          fontWeight: FontWeight.bold, fontFamily: 'ubuntu', fontSize: 15.0),
+    ),
+    elevation: 8,
+    backgroundColor: backgroundColor,
+    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+  );
 }
