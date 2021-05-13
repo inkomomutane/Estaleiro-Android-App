@@ -31,7 +31,7 @@ class Body extends StatelessWidget {
           AppRoutes.USER_LOGIN),
           SizedBox(height: size.height * 0.03),
           RaisedButton(size, "REGISTAR", Color(0xFFE2F2F3), Colors.black,
-              AppRoutes.USER_LOGIN)
+              AppRoutes.USER_SIGNUP)
         ],
       ),
     );

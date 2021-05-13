@@ -1,6 +1,8 @@
 import 'package:estaleiro/Api/AuthClientApi.dart';
 import 'package:estaleiro/Auth/Auth.dart';
 import 'package:estaleiro/Constants.dart';
+import 'package:estaleiro/Controllers/SecureStorage.dart';
+import 'package:estaleiro/Controllers/UsersClient.dart';
 import 'package:estaleiro/Routes/Routes.dart';
 import 'package:estaleiro/UIs/GlobalWidgets/RaisedMailInput.dart';
 import 'package:estaleiro/UIs/GlobalWidgets/RaisedPasswordField.dart';
@@ -9,6 +11,7 @@ import 'package:estaleiro/UIs/GlobalWidgets/TextFieldInput.dart';
 import 'package:estaleiro/UIs/GlobalWidgets/RaisedCostumeButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 import 'Background.dart';
 
@@ -82,6 +85,21 @@ class _BodyState extends State<Body> {
                       text: 'Usuario ${aux.user!.name} logado com sucesso!',
                       backgroundColor: Colors.green,
                     ));
+                    print(aux.toJson());
+                    final secureStorage =
+                        Provider.of<SecureStorage>(context, listen: false);
+
+                    secureStorage.writeSecureData('token', aux.accessToken!);
+                    final data =
+                        Provider.of<UsersClient>(context, listen: false);
+                        secureStorage.readSecureData('token').then((token) => {
+                          data.users(token!)!.then((value) => {
+                                value.forEach((element) {
+                                  print(element.toJson());
+                                })
+                              })
+                        });
+
                     Navigator.of(context).pop();
                     Navigator.of(context).pushNamed(AppRoutes.DASHBOARD);
                   } else {
