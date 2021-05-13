@@ -80,27 +80,15 @@ class _BodyState extends State<Body> {
 
                   if (sol != null) {
                     Auth aux = Auth.fromJson(sol);
-                    print(aux.user!.toJson());
-                    ScaffoldMessenger.of(context).showSnackBar(ResponseSnackbar(
+                   final secureStorage = Provider.of<SecureStorage>(context, listen: false);
+                    secureStorage.writeSecureData('token', aux.accessToken!);
+                    secureStorage.writeSecureData('name', aux.user!.name!);
+                    secureStorage.writeSecureData('email', aux.user!.email!);
+                    Navigator.of(context).pop();
+                     ScaffoldMessenger.of(context).showSnackBar(ResponseSnackbar(
                       text: 'Usuario ${aux.user!.name} logado com sucesso!',
                       backgroundColor: Colors.green,
                     ));
-                    print(aux.toJson());
-                    final secureStorage =
-                        Provider.of<SecureStorage>(context, listen: false);
-
-                    secureStorage.writeSecureData('token', aux.accessToken!);
-                    final data =
-                        Provider.of<UsersClient>(context, listen: false);
-                        secureStorage.readSecureData('token').then((token) => {
-                          data.users(token!)!.then((value) => {
-                                value.forEach((element) {
-                                  print(element.toJson());
-                                })
-                              })
-                        });
-
-                    Navigator.of(context).pop();
                     Navigator.of(context).pushNamed(AppRoutes.DASHBOARD);
                   } else {
                     print('error');

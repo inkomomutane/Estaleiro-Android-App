@@ -1,3 +1,4 @@
+import 'package:estaleiro/Auth/Auth.dart';
 import 'package:estaleiro/Controllers/UsersClient.dart';
 import 'package:estaleiro/Routes/Routes.dart';
 //import 'package:estaleiro/UIs/Login/LoginScreen.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
      providers: [
         ChangeNotifierProvider<SecureStorage>(create: (context)=> SecureStorage()),
         ChangeNotifierProvider<UsersClient>(create: (context) => UsersClient()),
+         
       ],
     child:   MaterialApp(
       debugShowCheckedModeBanner: false,

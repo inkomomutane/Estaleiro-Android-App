@@ -1,6 +1,7 @@
 import 'package:estaleiro/Api/AuthClientApi.dart';
 import 'package:estaleiro/Auth/Auth.dart';
 import 'package:estaleiro/Constants.dart';
+import 'package:estaleiro/Controllers/SecureStorage.dart';
 import 'package:estaleiro/Routes/Routes.dart';
 import 'package:estaleiro/UIs/GlobalWidgets/RaisedMailInput.dart';
 import 'package:estaleiro/UIs/GlobalWidgets/RaisedPasswordField.dart';
@@ -9,6 +10,7 @@ import 'package:estaleiro/UIs/GlobalWidgets/TextFieldInput.dart';
 import 'package:estaleiro/UIs/GlobalWidgets/RaisedCostumeButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 import 'Background.dart';
 
@@ -118,7 +120,13 @@ class _BodyState extends State<Body> {
 
                       if (sol != null) {
                         Auth aux = Auth.fromJson(sol);
-                        print(aux.user!.toJson());
+                        final secureStorage =
+                            Provider.of<SecureStorage>(context, listen: false);
+                        secureStorage.writeSecureData(
+                            'token', aux.accessToken!);
+                        secureStorage.writeSecureData('name', aux.user!.name!);
+                        secureStorage.writeSecureData(
+                            'email', aux.user!.email!);
                         ScaffoldMessenger.of(context)
                             .showSnackBar(ResponseSnackbar(
                           text: 'Usuario ${aux.user!.name} logado com sucesso!',

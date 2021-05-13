@@ -4,8 +4,8 @@ import 'package:http/http.dart' as http;
 class ClientApi {
   final String baseUrl = "http://192.168.56.1:8000/api/";
 
-  Future<Map<String, dynamic>?> all(String url, String? token) async {
-        var uri = Uri.parse(baseUrl + url);
+  Future<List<Map<String, dynamic>?>?> all(String url, String? token) async {
+    var uri = Uri.parse(baseUrl + url);
     var headers = {
       'Accept': 'application/json',
       'Authorization': 'Bearer $token'
@@ -17,12 +17,20 @@ class ClientApi {
       case 401:
         return null;
       case 200:
-        return json.decode(response.body)['data'];
+        //uhodkiewicz@example.net
+        var data = json.decode(response.body);
+        var b = List.generate(
+            data.length, (index) => data[index] as Map<String, dynamic>);
+
+            print(b);
+        return b;
       default:
         return null;
     }
   }
-  Future<Map<String, dynamic>?> create(String url, String? token, Map<String, dynamic> body) async {
+
+  Future<Map<String, dynamic>?> create(
+      String url, String? token, Map<String, dynamic> body) async {
     var uri = Uri.parse(baseUrl + url);
     var headers = {
       'Accept': 'application/json',
@@ -35,17 +43,16 @@ class ClientApi {
       case 401:
         return null;
       case 201:
-        return json.decode(response.body)['data'];
+        return json.decode(response.body);
       default:
         return null;
     }
   }
 
-  Future<Map<String, dynamic>?> update(String url, String? token, Map<String, dynamic> body) async {
+  Future<Map<String, dynamic>?> update(
+      String url, String? token, Map<String, dynamic> body) async {
     var uri = Uri.parse(baseUrl + url);
-    body.addAll({
-      'method':'_put'
-    });
+    body.addAll({'method': '_put'});
     var headers = {
       'Accept': 'application/json',
       'Authorization': 'Bearer $token'
@@ -57,13 +64,13 @@ class ClientApi {
       case 401:
         return null;
       case 200:
-        return json.decode(response.body)['data'];
+        return json.decode(response.body);
       default:
         return null;
     }
   }
 
-  Future<Map<String, dynamic>?>  get(String url, String? token, Map<String, dynamic> body) async {
+  Future<Map<String, dynamic>?> get(String url, String? token) async {
     var uri = Uri.parse(baseUrl + url);
     var headers = {
       'Accept': 'application/json',
@@ -76,13 +83,14 @@ class ClientApi {
       case 401:
         return null;
       case 200:
-        return json.decode(response.body)['data'];
+        return json.decode(response.body);
       default:
         return null;
     }
   }
 
-  Future<bool> delete(String url, String? token, Map<String, dynamic> body) async {
+  Future<bool> delete(
+      String url, String? token, Map<String, dynamic> body) async {
     var uri = Uri.parse(baseUrl + url);
     var headers = {
       'Accept': 'application/json',
