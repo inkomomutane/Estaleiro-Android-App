@@ -1,10 +1,7 @@
-import 'package:estaleiro/UIs/Dashboard/Admin/controllers/MenuController.dart';
-import 'package:estaleiro/UIs/Dashboard/Admin/responsive.dart';
+import 'package:estaleiro/UIs/GlobalWidgets/constants.dart';
+import 'package:estaleiro/UIs/GlobalWidgets/responsive.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
-
-import '../../../constants.dart';
+import 'package:flutter_svg/svg.dart';
 
 class Header extends StatelessWidget {
   const Header({
@@ -18,7 +15,7 @@ class Header extends StatelessWidget {
         if (!Responsive.isDesktop(context))
           IconButton(
             icon: Icon(Icons.menu, color: Colors.black, size: 30.0),
-            onPressed: context.read<MenuController>().controlMenu,
+            onPressed: () => Scaffold.of(context).openDrawer(),
           ),
         if (!Responsive.isMobile(context))
           Text(
@@ -67,12 +64,6 @@ class ProfileCard extends StatelessWidget {
             "assets/icons/user.svg",
             height: 38,
           ),
-          if (!Responsive.isMobile(context))
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-              child: Text("Angelina Joli"),
-            ),
         ],
       ),
     );

@@ -1,13 +1,19 @@
-import 'package:estaleiro/UIs/Dashboard/Admin/constants.dart';
+import 'package:estaleiro/Routes/Routes.dart';
+import 'package:estaleiro/UIs/Dashboard/Dash.dart';
+import 'package:estaleiro/UIs/GlobalWidgets/constants.dart';
+import 'package:estaleiro/UIs/Materials/MaterialScreen.dart';
+import 'package:estaleiro/UIs/Vendas/VendasScreen.dart';
+import 'package:estaleiro/UIs/Vendas/components/InvoiceCard.dart';
+import 'package:estaleiro/UIs/Vendas/components/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 
 class SideMenu extends StatelessWidget {
   const SideMenu({
     Key? key,
   }) : super(key: key);
-/**child: , */
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -31,12 +37,24 @@ class SideMenu extends StatelessWidget {
             DrawerListTile(
               title: "Dashbord",
               svgSrc: "assets/icons/Dashbord.svg",
-              press: () {},
+              press: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
+                Navigator.push(context,
+                    new MaterialPageRoute(builder: (context) => new Dash()));
+              },
             ),
             DrawerListTile(
               title: "Vendas",
               svgSrc: "assets/icons/Vendas.svg",
-              press: () {},
+              press: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => new VendasScreen()));
+              },
             ),
             DrawerListTile(
               title: "Faturas",
@@ -51,7 +69,14 @@ class SideMenu extends StatelessWidget {
             DrawerListTile(
               title: "Materias",
               svgSrc: "assets/icons/Materias.svg",
-              press: () {},
+              press: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => new MaterialScreen()));
+              },
             ),
             DrawerListTile(
               title: "Caixa",

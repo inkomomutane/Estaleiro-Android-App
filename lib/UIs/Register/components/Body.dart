@@ -133,7 +133,7 @@ class _BodyState extends State<Body> {
                           backgroundColor: Colors.green,
                         ));
                         Navigator.of(context).pop();
-                        Navigator.of(context).pushNamed(AppRoutes.DASHBOARD);
+                        Navigator.of(context).pushNamed('/dashboard');
                       } else {
                         print('error');
                         ScaffoldMessenger.of(context)

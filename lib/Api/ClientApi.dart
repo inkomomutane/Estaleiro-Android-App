@@ -1,10 +1,15 @@
 import 'dart:convert';
+import 'package:estaleiro/Controllers/SecureStorage.dart';
+import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 
 class ClientApi {
   final String baseUrl = "http://192.168.56.1:8000/api/";
 
-  Future<List<Map<String, dynamic>?>?> all(String url, String? token) async {
+  Future<List<Map<String, dynamic>?>?> all(String url, BuildContext context) async {
+    final token =
+        await Provider.of<SecureStorage>(context).readSecureData('token');
     var uri = Uri.parse(baseUrl + url);
     var headers = {
       'Accept': 'application/json',
@@ -30,7 +35,10 @@ class ClientApi {
   }
 
   Future<Map<String, dynamic>?> create(
-      String url, String? token, Map<String, dynamic> body) async {
+      String url, BuildContext context, Map<String, dynamic> body) async {
+        final token =
+        await Provider.of<SecureStorage>(context).readSecureData('token');
+      
     var uri = Uri.parse(baseUrl + url);
     var headers = {
       'Accept': 'application/json',
@@ -50,9 +58,11 @@ class ClientApi {
   }
 
   Future<Map<String, dynamic>?> update(
-      String url, String? token, Map<String, dynamic> body) async {
+      String url, BuildContext context, Map<String, dynamic> body) async {
+        final token =
+        await Provider.of<SecureStorage>(context).readSecureData('token');
     var uri = Uri.parse(baseUrl + url);
-    body.addAll({'method': '_put'});
+    body.addAll({'_method': 'patch'});
     var headers = {
       'Accept': 'application/json',
       'Authorization': 'Bearer $token'
@@ -70,7 +80,9 @@ class ClientApi {
     }
   }
 
-  Future<Map<String, dynamic>?> get(String url, String? token) async {
+  Future<Map<String, dynamic>?> get(String url,BuildContext context) async {
+    final token =
+        await Provider.of<SecureStorage>(context).readSecureData('token');
     var uri = Uri.parse(baseUrl + url);
     var headers = {
       'Accept': 'application/json',
@@ -90,7 +102,9 @@ class ClientApi {
   }
 
   Future<bool> delete(
-      String url, String? token, Map<String, dynamic> body) async {
+      String url, BuildContext context, Map<String, dynamic> body) async {
+        final token =
+        await Provider.of<SecureStorage>(context).readSecureData('token');
     var uri = Uri.parse(baseUrl + url);
     var headers = {
       'Accept': 'application/json',

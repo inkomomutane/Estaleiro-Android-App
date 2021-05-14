@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class UsersClient extends ClientApi with ChangeNotifier {
-  Future<List<User>?>? users(String token) async {
-    final data = await this.all('users', token);
+  Future<List<User>?>? users(BuildContext context) async {
+    
+    final data = await this.all('users', context);
     if (data == null) {
       return <User>[];
     }
@@ -14,8 +15,9 @@ class UsersClient extends ClientApi with ChangeNotifier {
         data.length, (index) => User.fromJson(data[index]!));
   }
 
-  Future<User?> getUser(String id, String token) async {
-    final user = await this.get('users/' + id, token);
+  Future<User?> getUser(String id, BuildContext context) async {
+     //final token = await Provider.of<SecureStorage>(context).readSecureData('token');
+    final user = await this.get('users/' + id, context);
     print(user);
     if (user != null) return User.fromJson(user);
     return null;

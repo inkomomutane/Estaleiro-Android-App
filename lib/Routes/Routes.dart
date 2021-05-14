@@ -9,5 +9,6 @@ class AppRoutes {
   static const HOME = '/';
   static const USER_LOGIN = '/user-login';
   static const USER_SIGNUP = '/user-signup';
-  static const DASHBOARD = '/dashboard';
+  static const DASHBOARD = '/user-dashboard';
+  static const MATERIALS = '/user-material';
 }

@@ -1,6 +1,9 @@
-import 'package:estaleiro/UIs/Dashboard/Admin/constants.dart';
-import 'package:estaleiro/UIs/Dashboard/Admin/controllers/MenuController.dart';
-import 'package:estaleiro/UIs/Dashboard/Admin/screens/main/main_screen.dart';
+
+
+
+import 'package:estaleiro/Controllers/MenuController.dart';
+import 'package:estaleiro/UIs/GlobalWidgets/constants.dart';
+import 'package:estaleiro/UIs/Materials/MaterialScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +27,7 @@ class Dash extends StatelessWidget {
             create: (context) => MenuController(),
           ),
         ],
-        child: MainScreen(),
+        child: MaterialScreen(),
       ),
     );
   }

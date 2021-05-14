@@ -1,10 +1,11 @@
 // ignore: unused_import
 import 'dart:convert';
+import 'package:estaleiro/Models/User.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'ClientApi.dart';
 
-class AuthClientApi extends ClientApi {
+class AuthClientApi extends ClientApi with ChangeNotifier {
   Future<Map<String, dynamic>?> login(String email, String password) async {
     var uri = Uri.parse(baseUrl + 'login');
     var headers = {
@@ -57,5 +58,21 @@ class AuthClientApi extends ClientApi {
       print(e);
       return null;
     }
+  }
+
+   Future<List<User>?>? users(BuildContext context) async {
+    final data = await this.all('users', context);
+    if (data == null) {
+      return <User>[];
+    }
+    return List<User>.generate(
+        data.length, (index) => User.fromJson(data[index]!));
+  }
+
+  Future<User?> getUser(String id, BuildContext context) async {
+    final user = await this.get('users/' + id, context);
+    print(user);
+    if (user != null) return User.fromJson(user);
+    return null;
   }
 }

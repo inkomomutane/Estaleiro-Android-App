@@ -27,11 +27,11 @@ class Body extends StatelessWidget {
             height: size.height * 0.4,
           ),
           SizedBox(height: size.height * 0.03),
-          RaisedButton(size, "LOGIN", Color(0xFFFCE0a2), Colors.black,
-          AppRoutes.USER_LOGIN),
+          RaisedButton(
+              size, "LOGIN", Color(0xFFFCE0a2), Colors.black, '/login'),
           SizedBox(height: size.height * 0.03),
-          RaisedButton(size, "REGISTAR", Color(0xFFE2F2F3), Colors.black,
-              AppRoutes.USER_SIGNUP)
+          RaisedButton(
+              size, "REGISTAR", Color(0xFFE2F2F3), Colors.black, '/register')
         ],
       ),
     );

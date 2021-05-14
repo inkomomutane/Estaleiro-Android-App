@@ -1,7 +1,6 @@
+import 'package:estaleiro/UIs/GlobalWidgets/constants.dart';
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
-import 'chart.dart';
 import 'storage_info_card.dart';
 
 class StarageDetails extends StatelessWidget {
@@ -29,7 +28,7 @@ class StarageDetails extends StatelessWidget {
             ),
           ),
           SizedBox(height: defaultPadding),
-          Chart(),
+         
           StorageInfoCard(
             svgSrc: "assets/icons/twitter.svg",
             title: "Documents Files",

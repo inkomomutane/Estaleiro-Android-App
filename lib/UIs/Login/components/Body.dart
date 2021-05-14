@@ -89,7 +89,7 @@ class _BodyState extends State<Body> {
                       text: 'Usuario ${aux.user!.name} logado com sucesso!',
                       backgroundColor: Colors.green,
                     ));
-                    Navigator.of(context).pushNamed(AppRoutes.DASHBOARD);
+                    Navigator.of(context).pushNamed('/dashboard');
                   } else {
                     print('error');
                     ScaffoldMessenger.of(context).showSnackBar(ResponseSnackbar(
